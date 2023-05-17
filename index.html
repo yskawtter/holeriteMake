@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,600;1,600&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="textoPrincipal">
+
+        <h1>HOLERITE</h1>
+    </div>
+<form class="formulariozin" action="">
+    <h2>DADOS DO CLIENTE:</h2>
+    <label for="">Nome Do Cliente:</label>
+    <input type="text" class="clientName" placeholder="Insira seu nome aqui">
+    <label for="">Profissão:</label>
+    <input type="text" class="clientProf" placeholder="Insira sua profissão">
+
+    <h2>DADOS DA EMPRESA:</h2>
+    <label for="">CNPJ:</label>
+    <input type="text" class="cnpj" placeholder="Insira o CNPJ da empresa">
+    <label for="">Nome Empresa:</label>
+    <input type="text" class="nomeEmpresa" placeholder="Insira o nome da empresa">
+    <label for="">CBO:</label>
+    <input type="number" class="cboEmpresa" placeholder="Insira o CBO">
+    <label for="">Codigo:</label>
+    <input type="number" class="codigoCliente" placeholder="Ex: 12">
+    <label for="">Data de Admissão:</label>
+    <input type="date" class="data" name="data" placeholder="Insira o CBO">
+
+    <h2>INFORMACOES DO CLIENTE:</h2>
+    <label for="">Salario:</label>
+    <input type="number" class="holcap" placeholder="Ex: 3000.25" required>
+    <label for="">Comissão Extra:</label>
+    <input type="number" class="comissao" placeholder="Ex: 500">
+    <label for="">Mês do pagamento:</label>
+    <input type="text" class="mesPay" placeholder="Ex: Janeiro, Fevereiro...">
+
+    <label for="">Insira uma descrição basica:</label>
+    <textarea name="comentario" id="comentario" rows="10" placeholder="CPF, Felicidades...(Opcional)"></textarea>
+    <button class="enviar">enviar</button>
+</form>
+
+    <div class="info">
+        <div class="info2">
+        <p>SALARIO BASE: <span class="baseSalary"></span></p>
+        <p>IMPOSTO PORCENTAGEM: <span class="impostoPorc"></span></p>
+        <p>SALARIO COM DESCONTO: <span class="descontSalary"></span></p>
+        <p>VALOR DESCONTO: <span class="valorDescont"></span></p>
+        <p>VALOR COMISSÃO: <span class="valorComissao"></span></p>
+    </div>
+    
+    <div class="infoTabela">
+    <p>Tabela de IRRF</p>
+    <span>ATÉ R$ 1212 -> 7.5%</span>
+    <span>ATÉ R$ 2427 -> 9.5%</span>
+    <span>ATÉ R$ 3641 -> 12%</span>
+    <span>> R$ 3642 -> 14%</span>
+    </div>
+</div>
+
+    <div class="imgHol">
+        <canvas id="myCanvas" width="931" height="594"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

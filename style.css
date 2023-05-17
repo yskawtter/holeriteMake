@@ -1,0 +1,92 @@
+.imposto {
+    color: red;
+}
+body {
+    background-color: #b0ddd6;
+    display: flex;
+    flex-direction: column;
+}
+.textoPrincipal {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #83ada8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.formulariozin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 32px;
+}
+.formulariozin h2 {
+    border-bottom: 2px solid #3c504d;
+    color: #83ada8;
+    max-width: 350px;
+    padding: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.formulariozin input {
+    max-width: 450px;
+    height: 30px;
+    background-color: #f3fcfb;
+    border: 1px solid #83ada8;
+}
+.formulariozin label {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 12px;
+    color: #3c504d;
+}
+.formulariozin button {
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #83ada8;
+    border: none;
+    color: #3c504d;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 12px;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #3c504d;
+    color: white;
+    padding: 22px;
+    gap: 22px;
+}
+.info2 {
+    border: 2px solid rgb(31, 51, 48);
+    padding: 12px;
+}
+.infoCont {
+    background-color: white;
+    padding: 2px;
+    color: black;
+}
+.infoTabela {
+    display: flex;
+    flex-direction: column;
+    background-color: #83ada8;
+    color: #3c504d;
+    font-weight: bold;
+    border-radius: 10px;
+    max-width: 320px;
+    padding: 12px;
+}
+#comentario {
+    max-width: 450px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #3c504d;
+    background-color: #f3fcfb;
+}
