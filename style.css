@@ -90,3 +90,8 @@ body {
     border: 1px solid #3c504d;
     background-color: #f3fcfb;
 }
+
+.error {
+    color: red;
+    padding: 12px;
+}

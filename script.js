@@ -1,8 +1,8 @@
 /*
 TASK'S QUE AINDA FALTAM:
--Colocar API no CNPJ que puxe o nome da empresa... 
--melhorar esse codigozim
--verificar os campos
+-Colocar API no CNPJ que puxe o nome da empresa... = check
+-melhorar esse codigozim = falta
+-verificar os campos = falta
 */
 
 
@@ -37,6 +37,7 @@ let vlrDesconto;
 let vlrComissao;
 let comissaoAndSalary
 
+
 /* DADOS DO CLIENTE E EMPRESA */
 
 // NOME CLIENTE
@@ -50,29 +51,58 @@ function profCli() {
     return profissaoClientValue
 }
 
+let empresaAPIValue;
+let cnpjAPIvalue;
+let stringCNPJ;
+
 //CNPJ EMPRESA
-function cnpjValue() {
+
+function showCNPJ(result){
+    const nomeFantasia = result['NOME FANTASIA']
+    const CNPJVL = result['CNPJ']
+
+    empresaAPIValue = nomeFantasia
+    cnpjAPIvalue = CNPJVL
+
+    console.log(cnpjAPIvalue)
+
     let regexNumeros = /^[0-9]+$/;
-
-    const valueCNPJ = cnpj.value
-
-    if(regexNumeros.test(valueCNPJ)) {
-    let arrayCNPJ = Array.from(valueCNPJ)
-
-        arrayCNPJ.splice(2, 0, '.')
-        arrayCNPJ.splice(6, 0, '.')
-        arrayCNPJ.splice(10, 0, '/')
-        arrayCNPJ.splice(15, 0, '-')
-
-    let stringCNPJ = arrayCNPJ.join('') 
-    return stringCNPJ
-    } else {
-    return valueCNPJ
-    }
+    
+    console.log(cnpjAPIvalue)
+    if(regexNumeros.test(cnpjAPIvalue)) {
+            let arrayCNPJ = Array.from(cnpjAPIvalue)
+                arrayCNPJ.splice(2, 0, '.')
+                arrayCNPJ.splice(6, 0, '.')
+                arrayCNPJ.splice(10, 0, '/')
+                arrayCNPJ.splice(15, 0, '-')
+                stringCNPJ = arrayCNPJ.join('') 
+                console.log(stringCNPJ)
+            return {stringCNPJ, empresaAPIValue}
+            } else {
+            return {cnpjAPIvalue, empresaAPIValue}
+            }
+    
 }
+
+function cnpjValue(){
+    
+    let cnpjValueAPI = cnpj.value
+    let cnpjToString = cnpjValueAPI.replace(/\D/g, '')
+    const options = {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default'
+    }
+    fetch(`https://api-publica.speedio.com.br/buscarcnpj?cnpj=${cnpjToString}`, options)
+        .then(x => {
+            x.json().then(data => showCNPJ(data))
+        }).catch(e => console.log('ERROR: ' + e))
+}
+
 //NOME DA EMPRESA
 function nomeEmp() {
-    const valueNomeEmpresa = (nomeEmpresa.value).toUpperCase()
+    const valueNomeEmpresa = empresaAPIValue
+    nomeEmpresa.value = valueNomeEmpresa
     return valueNomeEmpresa
     
 }
@@ -188,10 +218,9 @@ function holerite(e){
 enviarBtn.addEventListener('click', holerite)
 
 function myPhoto() {
-
+    verifyCampoVazio()
 let canvas = document.getElementById("myCanvas");
     let context = canvas.getContext("2d");
-
     // Carrega a imagem
     let img = new Image();
     img.src = "./img/xxa.png";
@@ -278,6 +307,7 @@ let canvas = document.getElementById("myCanvas");
                 newComission = vlrCOMISSAO.join('')
             }
 
+            cnpjValue()
         /* POSICOES DOS VALORES HOLERITE */
         function holeritePosition() {
             //valor desconto
@@ -324,10 +354,16 @@ let canvas = document.getElementById("myCanvas");
             context.fillText(profCli(), canvas.width / 11, canvas.height / 5.2)
         }
         function holeriteNomeEmpresaPosition() {
-            context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
+            setTimeout(() => {
+
+                context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
+            }, 702)
         }
         function holeritCNPJEmpresaPosition() {
-            context.fillText(('CNPJ: ' + cnpjValue()), canvas.width / 28, canvas.height / 12)
+            
+            setTimeout(() => {
+                context.fillText(('CNPJ: ' + stringCNPJ), canvas.width / 28, canvas.height / 12)
+            }, 700)
         }
         function holeritCBOPosition() {
             context.fillText(cboValue(), canvas.width / 1.5, canvas.height / 6)
