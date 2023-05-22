@@ -218,7 +218,7 @@ function holerite(e){
 enviarBtn.addEventListener('click', holerite)
 
 function myPhoto() {
-    verifyCampoVazio()
+
 let canvas = document.getElementById("myCanvas");
     let context = canvas.getContext("2d");
     // Carrega a imagem
@@ -357,13 +357,13 @@ let canvas = document.getElementById("myCanvas");
             setTimeout(() => {
 
                 context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
-            }, 702)
+            }, 1010)
         }
         function holeritCNPJEmpresaPosition() {
             
             setTimeout(() => {
                 context.fillText(('CNPJ: ' + stringCNPJ), canvas.width / 28, canvas.height / 12)
-            }, 700)
+            }, 1000)
         }
         function holeritCBOPosition() {
             context.fillText(cboValue(), canvas.width / 1.5, canvas.height / 6)
