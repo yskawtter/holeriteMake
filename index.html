@@ -17,21 +17,21 @@
 <form class="formulariozin" action="">
     <h2>DADOS DO CLIENTE:</h2>
     <label for="">Nome Do Cliente:</label>
-    <input type="text" class="clientName" placeholder="Insira seu nome aqui">
+    <input type="text" class="clientName" placeholder="Insira seu nome aqui" required>
     <label for="">Profissão:</label>
-    <input type="text" class="clientProf" placeholder="Insira sua profissão">
+    <input type="text" class="clientProf" placeholder="Insira sua profissão" required>
 
     <h2>DADOS DA EMPRESA:</h2>
     <label for="">CNPJ:</label>
-    <input type="text" class="cnpj" placeholder="Ex: 01.000.000/0001-01">
+    <input type="text" class="cnpj" placeholder="Ex: 01.000.000/0001-01" required>
     <label for="">Nome Empresa:</label>
-    <input type="text" class="nomeEmpresa" placeholder="Insira o nome da empresa">
+    <input type="text" class="nomeEmpresa" placeholder="Insira o nome da empresa (Opcional)">
     <label for="">CBO:</label>
-    <input type="number" class="cboEmpresa" placeholder="Insira o CBO">
+    <input type="number" class="cboEmpresa" placeholder="Insira o CBO" required>
     <label for="">Codigo:</label>
-    <input type="number" class="codigoCliente" placeholder="Ex: 12">
+    <input type="number" class="codigoCliente" placeholder="Ex: 12" required>
     <label for="">Data de Admissão:</label>
-    <input type="date" class="data" name="data" placeholder="Insira o CBO">
+    <input type="date" class="data" name="data" placeholder="Insira o CBO" required>
 
     <h2>INFORMACOES DO CLIENTE:</h2>
     <label for="">Salario:</label>
@@ -39,7 +39,7 @@
     <label for="">Comissão Extra:</label>
     <input type="number" class="comissao" placeholder="Ex: 500">
     <label for="">Mês do pagamento:</label>
-    <input type="text" class="mesPay" placeholder="Ex: Janeiro, Fevereiro...">
+    <input type="text" class="mesPay" placeholder="Ex: Janeiro, Fevereiro..." required>
 
     <label for="">Insira uma descrição basica:</label>
     <textarea name="comentario" id="comentario" rows="10" placeholder="CPF, Felicidades...(Opcional)"></textarea>

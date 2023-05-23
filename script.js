@@ -2,7 +2,9 @@
 TASK'S QUE AINDA FALTAM:
 -Colocar API no CNPJ que puxe o nome da empresa... = check
 -melhorar esse codigozim = falta
--verificar os campos = falta
+-verificar os campos = Check
+
+//consertar o bug do nome fantasia
 */
 
 
@@ -64,11 +66,8 @@ function showCNPJ(result){
     empresaAPIValue = nomeFantasia
     cnpjAPIvalue = CNPJVL
 
-    console.log(cnpjAPIvalue)
-
     let regexNumeros = /^[0-9]+$/;
     
-    console.log(cnpjAPIvalue)
     if(regexNumeros.test(cnpjAPIvalue)) {
             let arrayCNPJ = Array.from(cnpjAPIvalue)
                 arrayCNPJ.splice(2, 0, '.')
@@ -101,10 +100,9 @@ function cnpjValue(){
 
 //NOME DA EMPRESA
 function nomeEmp() {
-    const valueNomeEmpresa = empresaAPIValue
-    nomeEmpresa.value = valueNomeEmpresa
-    return valueNomeEmpresa
-    
+        const valueNomeEmpresa = empresaAPIValue
+        nomeEmpresa.value = valueNomeEmpresa
+        return valueNomeEmpresa
 }
 
 //CBO
@@ -140,7 +138,6 @@ function campoComentario() {
 
 let valorComentarioDoCampo = campoComentario()
 
-
 /* DADOS DO SALARIO  */
 //value do salario
 function numbAndImp() {
@@ -157,8 +154,63 @@ function impostoCalc(n, prc) {
     return +n / +prc
 }
 
+
+
+
+async function elementoFilho(nameElement, textoElemento) {
+    const pElement = document.createElement('p')
+    pElement.classList.add('error')
+    pElement.style.margin = '2px'
+    pElement.style.padding = '0'
+
+    pElement.textContent = textoElemento
+    const elementoName = nameElement.parentNode.insertBefore(pElement, nameElement.nextSibling)
+    setTimeout(() => elementoName.remove(), 5000)
+
+    return false
+}
+
+function selectElement(x) {
+    return x.value.length
+}
+
+
+
 function holerite(e){
+
+    //VERIFICA QUAIS CAMPOS ESTÃO VAZIO
+    if(nameClient.value === '') {
+        elementoFilho(nameClient, '*Insira o campo nome')
+    } 
+    if (profissaoClient.value === '') {
+        elementoFilho(profissaoClient, '*Insira uma profissão')
+    }
+    if (cnpj.value === '') {
+        elementoFilho(cnpj, '*Insira o CNPJ')
+    }
+    if (dataEmit.value === '') {
+        elementoFilho(dataEmit, '*Insira a data que você iniciou o trabalho...')
+    }
+    if (cbo.value === '') {
+        elementoFilho(cbo, '*Insira o CBO')
+    }
+    if (codigo.value === '') {
+        elementoFilho(codigo, '*Insira o codigo')
+    }
+    if (holInput.value === '') {
+        elementoFilho(holInput, '*Insira um valor no salario')
+    } else if (holInput.value < 500) {
+        elementoFilho(holInput, 'insira um salario maior que 500')
+    }
+    if (mesPay.value === '') {
+        elementoFilho(mesPay, '*Insira o mês de pagamento')
+    }
     
+    //VERIFICA SE OS CAMPOS OBRIGATORIOS SÃO TRUE
+    if(!!selectElement(nameClient) && !!selectElement(profissaoClient) && !!selectElement(cnpj) && !!selectElement(dataEmit) && !! selectElement(cbo) && !!selectElement(codigo) && !!selectElement(holInput) && !!selectElement(mesPay)){
+         myPhoto()
+    }
+
     e.preventDefault()
     let valorDescontado;
     let total;
@@ -212,7 +264,6 @@ function holerite(e){
         vlrDesconto = valorDescont.innerText = `R$ ${valorDescontado}`
         vlrComissao = valorComissao.innerText = `R$ ${myComission()}`
     } 
-    myPhoto() 
 }
 
 enviarBtn.addEventListener('click', holerite)
@@ -354,15 +405,20 @@ let canvas = document.getElementById("myCanvas");
             context.fillText(profCli(), canvas.width / 11, canvas.height / 5.2)
         }
         function holeriteNomeEmpresaPosition() {
-            setTimeout(() => {
-
-                context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
-            }, 1010)
+            console.log(nomeEmp())
+            if(nomeEmp() !== undefined) {
+                setTimeout(() => {
+                    context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
+                }, 1500)
+            } else {
+                setTimeout(() => {
+                    context.fillText(('EMPRESA: ' + nomeEmpresa.value), canvas.width / 28, canvas.height / 18)
+                }, 1500)
+            }
         }
         function holeritCNPJEmpresaPosition() {
-            
             setTimeout(() => {
-                context.fillText(('CNPJ: ' + stringCNPJ), canvas.width / 28, canvas.height / 12)
+                context.fillText(('CNPJ: ' + stringCNPJ || cnpj.value ), canvas.width / 28, canvas.height / 12)
             }, 1000)
         }
         function holeritCBOPosition() {
