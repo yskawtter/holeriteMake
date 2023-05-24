@@ -8,3 +8,4 @@ JS para praticar os conhecimentos em JavaScript
 -Colocar validações nos formularios (como ser obrigatorio colocar salario, não poder deixar campo em null e etc...) ✅ <br>
 -Verificar e corrigir os campos que a API de cnpj não puxar <br>
 -Clean code
+-botão limpar e botão download pra baixar a img
