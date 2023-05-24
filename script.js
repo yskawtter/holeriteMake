@@ -165,15 +165,14 @@ async function elementoFilho(nameElement, textoElemento) {
 
     pElement.textContent = textoElemento
     const elementoName = nameElement.parentNode.insertBefore(pElement, nameElement.nextSibling)
+    enviarBtn.disabled = true,
     setTimeout(() => elementoName.remove(), 5000)
-
-    return false
+    setTimeout(() => enviarBtn.disabled = false, 5000)
 }
 
 function selectElement(x) {
     return x.value.length
 }
-
 
 
 function holerite(e){
@@ -406,20 +405,14 @@ let canvas = document.getElementById("myCanvas");
         }
         function holeriteNomeEmpresaPosition() {
             console.log(nomeEmp())
-            if(nomeEmp() !== undefined) {
                 setTimeout(() => {
-                    context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
-                }, 1500)
-            } else {
-                setTimeout(() => {
-                    context.fillText(('EMPRESA: ' + nomeEmpresa.value), canvas.width / 28, canvas.height / 18)
-                }, 1500)
-            }
+                    context.fillText(('EMPRESA: ' + nomeEmp() || nomeEmpresa.value  ), canvas.width / 28, canvas.height / 18)
+                }, 1500)  
         }
         function holeritCNPJEmpresaPosition() {
             setTimeout(() => {
                 context.fillText(('CNPJ: ' + stringCNPJ || cnpj.value ), canvas.width / 28, canvas.height / 12)
-            }, 1000)
+            }, 1402)
         }
         function holeritCBOPosition() {
             context.fillText(cboValue(), canvas.width / 1.5, canvas.height / 6)
