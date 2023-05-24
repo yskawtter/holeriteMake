@@ -406,13 +406,13 @@ let canvas = document.getElementById("myCanvas");
         function holeriteNomeEmpresaPosition() {
             console.log(nomeEmp())
                 setTimeout(() => {
-                    context.fillText(('EMPRESA: ' + nomeEmp() || nomeEmpresa.value  ), canvas.width / 28, canvas.height / 18)
-                }, 1500)  
+                    context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
+                }, 2000)  
         }
         function holeritCNPJEmpresaPosition() {
             setTimeout(() => {
                 context.fillText(('CNPJ: ' + stringCNPJ || cnpj.value ), canvas.width / 28, canvas.height / 12)
-            }, 1402)
+            }, 2000)
         }
         function holeritCBOPosition() {
             context.fillText(cboValue(), canvas.width / 1.5, canvas.height / 6)
