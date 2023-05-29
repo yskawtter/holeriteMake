@@ -59,20 +59,14 @@ let cnpjAPIvalue;
 let stringCNPJ;
 
 //CNPJ EMPRESA
-
 function showCNPJ(result){
     const nomeFantasia = result['NOME FANTASIA']
     const nomeRazao = result['RAZAO SOCIAL']
     const CNPJVL = result['CNPJ']
 
-    if(nomeFantasia.length > 0) {
+    nomeFantasia.length > 0 ? empresaAPIValue = nomeFantasia : empresaAPIValue = nomeRazao
 
-        empresaAPIValue = nomeFantasia
-    } else {
-        empresaAPIValue = nomeRazao
-    }
     cnpjAPIvalue = CNPJVL
-
     let regexNumeros = /^[0-9]+$/;
     
     if(regexNumeros.test(cnpjAPIvalue)) {
@@ -82,16 +76,14 @@ function showCNPJ(result){
                 arrayCNPJ.splice(10, 0, '/')
                 arrayCNPJ.splice(15, 0, '-')
                 stringCNPJ = arrayCNPJ.join('') 
-                console.log(stringCNPJ)
             return {stringCNPJ, empresaAPIValue}
             } else {
             return {cnpjAPIvalue, empresaAPIValue}
             }
-    
 }
 
 function cnpjValue(){
-    
+
     let cnpjValueAPI = cnpj.value
     let cnpjToString = cnpjValueAPI.replace(/\D/g, '')
     const options = {
@@ -111,7 +103,6 @@ function nomeEmp() {
         nomeEmpresa.value = valueNomeEmpresa
         return valueNomeEmpresa
 }
-
 //CBO
 function cboValue() {
     const valueDoCbo = +cbo.value
@@ -161,9 +152,6 @@ function impostoCalc(n, prc) {
     return +n / +prc
 }
 
-
-
-
 async function elementoFilho(nameElement, textoElemento) {
     const pElement = document.createElement('p')
     pElement.classList.add('error')
@@ -176,11 +164,9 @@ async function elementoFilho(nameElement, textoElemento) {
     setTimeout(() => elementoName.remove(), 5000)
     setTimeout(() => enviarBtn.disabled = false, 5000)
 }
-
 function selectElement(x) {
     return x.value.length
 }
-
 
 function holerite(e){
 
@@ -225,50 +211,31 @@ function holerite(e){
         x.classList.add('infoCont')
     })
 
-    if(numbAndImp() <= 1212) {
-        valorDescontado = (numbAndImp() * impostoCalc(7.5, 100)).toFixed(2)
+    //TRANSFORMAR NUMERO
+    function valorTransformacao (vlr) {
+        valorDescontado = (numbAndImp() * impostoCalc(vlr, 100)).toFixed(2)
         comissaoAndSalary = (numbAndImp() + myComission()).toFixed(2)
         total = (comissaoAndSalary - valorDescontado).toFixed(2)
 
         valorAntigo = baseSalary.innerText = `R$ ${numbAndImp()}`
-        porcentagem = impostSalary.innerText = `${impostoCalc(7.5, 100) * 100}%`
+        porcentagem = impostSalary.innerText = `${(impostoCalc(vlr, 100) * 100).toFixed(2)}%`
         totalDesconto = descontSalary.innerText = `R$ ${total}`
         vlrDesconto = valorDescont.innerText = `R$ ${valorDescontado}`
         vlrComissao = valorComissao.innerText = `R$ ${myComission()}`
+    }
+    //INSERIR INFORMACOES
 
+    if(numbAndImp() <= 1212) {
+        valorTransformacao(7.5)
     } 
     else if(numbAndImp() <= 2427) {
-        valorDescontado = (numbAndImp() * impostoCalc(9.5, 100)).toFixed(2)
-        comissaoAndSalary = (numbAndImp() + myComission()).toFixed(2)
-        total = comissaoAndSalary - valorDescontado
-
-        valorAntigo = baseSalary.innerText = `R$ ${numbAndImp()}`
-        porcentagem = impostSalary.innerText = `${(impostoCalc(9.5, 100) * 100).toFixed(2)}%`
-        totalDesconto = descontSalary.innerText = `R$ ${total.toFixed(2)}`
-        vlrDesconto = valorDescont.innerText = `R$ ${valorDescontado}`
-        vlrComissao = valorComissao.innerText = `R$ ${myComission()}`
+        valorTransformacao(9.5)
     }
     else if(numbAndImp() <= 3641) {
-        valorDescontado = (numbAndImp() * impostoCalc(12, 100)).toFixed(2)
-        comissaoAndSalary = (numbAndImp() + myComission()).toFixed(2)
-        total = comissaoAndSalary - valorDescontado
-
-        valorAntigo = baseSalary.innerText = `R$ ${numbAndImp()}`
-        porcentagem = impostSalary.innerText = `${(impostoCalc(12, 100) * 100).toFixed(2)}%`
-        totalDesconto = descontSalary.innerText = `R$ ${total.toFixed(2)}`
-        vlrDesconto = valorDescont.innerText = `R$ ${valorDescontado}`
-        vlrComissao = valorComissao.innerText = `R$ ${myComission()}`
+        valorTransformacao(12)
     }
     else if(numbAndImp() >= 3642) {
-        valorDescontado = (numbAndImp() * impostoCalc(14, 100)).toFixed(2)
-        comissaoAndSalary = (numbAndImp() + myComission()).toFixed(2)
-        total = comissaoAndSalary - valorDescontado
-
-        valorAntigo = baseSalary.innerText = `R$ ${numbAndImp()}`
-        porcentagem = impostSalary.innerText = `${(impostoCalc(14, 100) * 100).toFixed(2)}%`
-        totalDesconto = descontSalary.innerText = `R$ ${total.toFixed(2)}`
-        vlrDesconto = valorDescont.innerText = `R$ ${valorDescontado}`
-        vlrComissao = valorComissao.innerText = `R$ ${myComission()}`
+        valorTransformacao(14)
     } 
 }
 
@@ -300,7 +267,7 @@ let canvas = document.getElementById("myCanvas");
 
       // Digita o texto no canvas
 
-        function testando() {
+        function inserirDados() {
             if(totalDesconto === undefined) {
                 alert('Preencha o campo')
                 return
@@ -336,8 +303,7 @@ let canvas = document.getElementById("myCanvas");
                 let vlrSALARIO = Array.from(numeroSalarioImport)
                 vlrSALARIO.splice(1, 0, '.')
                 newSLR = vlrSALARIO.join('')
-            }
-            else if(numeroSalarioImport.length === 7) {
+            } else if(numeroSalarioImport.length === 7) {
                 let vlrSALARIO = Array.from(numeroSalarioImport)
                 vlrSALARIO.splice(1, 0, '.')
                 newSLR = vlrSALARIO.join('')
@@ -345,8 +311,7 @@ let canvas = document.getElementById("myCanvas");
                 let vlrSALARIO = Array.from(numeroSalarioImport)
                 vlrSALARIO.splice(2, 0, '.')
                 newSLR = vlrSALARIO.join('')
-            }
-            else if(numeroSalarioImport.length === 8) {
+            } else if(numeroSalarioImport.length === 8) {
                 let vlrSALARIO = Array.from(numeroSalarioImport)
                 vlrSALARIO.splice(3, 0, '.')
                 newSLR = vlrSALARIO.join('')
@@ -371,75 +336,72 @@ let canvas = document.getElementById("myCanvas");
 
             cnpjValue()
         /* POSICOES DOS VALORES HOLERITE */
+        // FUNÇÃO QUE DEFINE O ELEMENTO / LARGURA / ALTURA
+        function positionFN(ele, width, heigh) {
+                context.fillText(ele, canvas.width / width, canvas.height / heigh)
+        }
+
         function holeritePosition() {
             //valor desconto
-            context.fillText(newVLR, canvas.width / 1.25, canvas.height / 1.09); //valorLiquido
-            context.fillText(newVLR, canvas.width / 1.45, canvas.height / 1.02); //valor embaixo
-            context.fillText('30.00', canvas.width / 1.75, canvas.height / 3.5); //SalarioMesREF
-
-
+            positionFN(newVLR, 1.25, 1.09) //valorLiquido
+            positionFN(newVLR, 1.45, 1.02) //valorEmbaixo
+            positionFN('30.00', 1.75, 3.5) //salarioRef
+ 
             //valorNormal
-            context.fillText(newComission, canvas.width / 1.48, canvas.height / 1.17); //vencimento
+            positionFN(newComission, 1.48, 1.17) //vencimento
 
             //valorNormalSalarioVerify
             if(newSLR.length <= 5) {
-                context.fillText((newSLR + '.00'), canvas.width / 1.422, canvas.height / 3.52);
-                context.fillText((newSLR + '.00'), canvas.width / 17, canvas.height / 1.02); //valorEmbaixo
+                positionFN((newSLR + '.00'), 1.42, 3.52)
+                positionFN((newSLR + '.00'), 17, 1.02)
+                //valorEmbaixo
             } else if(newSLR.length >= 6) {
-                context.fillText((newSLR), canvas.width / 1.422, canvas.height / 3.52);
-                context.fillText((newSLR), canvas.width / 17, canvas.height / 1.02); //valorEmbaixo
+                positionFN(newSLR, 1.42, 3.52)
+                positionFN(newSLR, 17, 1.02)//valorEmbaixo
             }
 
             //valorDesconto
-            context.fillText(vlrDsc, canvas.width / 1.18, canvas.height / 3); //valorINSS - DESC
-            context.fillText(pct, canvas.width / 1.75, canvas.height / 3); //FaixaIRRF - DESC
-            context.fillText(vlrDsc, canvas.width / 1.87, canvas.height / 1.02); //FaixaIRRF
-            context.fillText(vlrDsc, canvas.width / 1.23, canvas.height / 1.17); //Total desconto
-            context.fillText(pct, canvas.width / 1.2, canvas.height / 1.02); //FaixaIRRF
+            positionFN(vlrDsc, 1.18, 3) //Valor INSS - DESC.
+            positionFN(pct, 1.75, 3) //Faixa IRPF - DESC
+            positionFN(vlrDsc, 1.87, 1.02) //Faixa IRPF
+            positionFN(vlrDsc, 1.23, 1.17) //Total Desconto
+            positionFN(pct, 1.2, 1.02) //Faixa IRPF
 
             //valorComissao
-            if(vlrCOMISSAO.length <= 4) {
-                context.fillText((vlrCOMISSAO + '.00'), canvas.width / 1.4, canvas.height / 3.25) //Comissao extra - REF
-            } else if (vlrCOMISSAO.length >= 5) {
-                context.fillText((vlrCOMISSAO), canvas.width / 1.4, canvas.height / 3.25)
-            }   
+            vlrCOMISSAO.length <= 4 ? positionFN((vlrCOMISSAO + '.00'), 1.4, 3.25) : positionFN(vlrCOMISSAO, 1.4, 3.25)
 
-            context.fillText(newComission, canvas.width / 4.7, canvas.height / 1.02); //satContrINSS
-            context.fillText(newComission, canvas.width / 2.7, canvas.height / 1.02); //satContrFGTS
-            context.fillText('7.00', canvas.width / 1.72, canvas.height / 3.25); //SalarioMesREF - DESC
+            positionFN(newComission, 4.7, 1.02) //satContrINSS
+            positionFN(newComission, 2.7, 1.02) //satContrFGTS
+            positionFN('7.00', 1.72, 3.25) //salarioMes REF - DESC
         }
-        //NOME DO BICO
+
         function holeriteNomePosition() {
-                context.fillText(nameCli(), canvas.width / 11, canvas.height / 6)
+            positionFN((nameCli()), 11, 6)
         }
         function holeriteProfPosition() {
-            context.fillText(profCli(), canvas.width / 11, canvas.height / 5.2)
+            positionFN(profCli(), 11, 5.2)
         }
-        function holeriteNomeEmpresaPosition() {
-            console.log(nomeEmp())
-                setTimeout(() => {
-                    context.fillText(('EMPRESA: ' + nomeEmp()), canvas.width / 28, canvas.height / 18)
-                }, 2000)  
+        function holeriteNomeEmpresaPosition() { // NOME - CALLBACK API
+            setTimeout(() => { positionFN(('EMPRESA: ' + nomeEmp()), 28, 18)}, 2000)  
         }
-        function holeritCNPJEmpresaPosition() {
-            setTimeout(() => {
-                context.fillText(('CNPJ: ' + stringCNPJ || cnpj.value ), canvas.width / 28, canvas.height / 12)
-            }, 2000)
+        function holeritCNPJEmpresaPosition() { //CNPJ - CALLBACK API
+            setTimeout(() => { positionFN(('CNPJ: ' + stringCNPJ || cnpj.value ), 28, 12)}, 2000)
         }
         function holeritCBOPosition() {
-            context.fillText(cboValue(), canvas.width / 1.5, canvas.height / 6)
+            positionFN((cboValue()), 1.5, 6)
         }
         function holeritDATAPosition() {
-            context.fillText(dataDeEmissao(), canvas.width / 1.22, canvas.height / 5)
-            context.fillText(codigoCliente(), canvas.width / 24.5, canvas.height / 6)
+            positionFN((dataDeEmissao()), 1.22, 5)
+            positionFN((codigoCliente()), 24.5, 6)
         }
         function folhaMensalData() {
-            context.fillText((`Folha Mensal`), canvas.width / 1.24, canvas.height / 12.3)
-            context.fillText((`${mesPayday()}`), canvas.width / 1.3, canvas.height / 9.5)
+            positionFN((`Folha Mensal`), 1.24, 12.3)
+            positionFN((`${mesPayday()}`), 1.3, 9.5)
         }
         function mycampoComentario() {
-            context.fillText(campoComentario(), canvas.width / 16, canvas.height / 1.17); //Campo comentario
+            positionFN(campoComentario(), 16, 1.17)
         }
+
         mycampoComentario()
         folhaMensalData()
         holeritDATAPosition()
@@ -450,7 +412,7 @@ let canvas = document.getElementById("myCanvas");
         holeriteNomePosition()
         holeritePosition()
     }
-    testando()
+    inserirDados()
     };
 }
 
