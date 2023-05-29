@@ -22,6 +22,7 @@ const campoComent = document.querySelector('#comentario')
 
 const holInput = document.querySelector('.holcap')
 const enviarBtn = document.querySelector('.enviar')
+const limparBtn = document.querySelector('.limpar')
 const info = document.querySelector('.info')
 const info2 = document.querySelectorAll('.info2 p span')
 const comissao = document.querySelector('.comissao')
@@ -61,9 +62,15 @@ let stringCNPJ;
 
 function showCNPJ(result){
     const nomeFantasia = result['NOME FANTASIA']
+    const nomeRazao = result['RAZAO SOCIAL']
     const CNPJVL = result['CNPJ']
 
-    empresaAPIValue = nomeFantasia
+    if(nomeFantasia.length > 0) {
+
+        empresaAPIValue = nomeFantasia
+    } else {
+        empresaAPIValue = nomeRazao
+    }
     cnpjAPIvalue = CNPJVL
 
     let regexNumeros = /^[0-9]+$/;
@@ -265,7 +272,12 @@ function holerite(e){
     } 
 }
 
+function cleanBtn() {
+    location.reload()
+}
+
 enviarBtn.addEventListener('click', holerite)
+limparBtn.addEventListener('click', cleanBtn)
 
 function myPhoto() {
 

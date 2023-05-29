@@ -95,3 +95,8 @@ body {
     color: red;
     letter-spacing: 1px;
 }
+.limpar {
+    background-color: transparent !important;
+    border: 1px solid #3c504d !important;
+    color: #83ada8 !important;
+}
