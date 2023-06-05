@@ -43,7 +43,7 @@ body {
     padding-top: 32px;
     color: #3c504d;
 }
-.formulariozin button {
+.formulariozin button, .btn {
     width: 150px;
     height: 40px;
     cursor: pointer;
@@ -99,4 +99,64 @@ body {
     background-color: transparent !important;
     border: 1px solid #3c504d !important;
     color: #83ada8 !important;
+}
+
+  .close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    font-size: 5rem;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+.hidden {
+    display: none;
+}
+.modal {
+position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #3c504d;
+  padding: 5rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+.modal h3 {
+    font-size: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.modal h4 {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.3px;
+    color: #f3fcfb;
+}
+.modal ul li {
+    padding: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #b0ddd6;
+    background-color: #3a4e4b70;
+    margin: 12px;
+    border-radius: 6px;
+}
+
+  
+
+#myCanvas {
+    display: none;
+}
+@media print {
+    body * {
+        display: none;
+    }
+    .imgPrint, .imgPrint * {
+        display: block;
+    }
 }

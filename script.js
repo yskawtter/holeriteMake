@@ -1,10 +1,9 @@
 /*
 TASK'S QUE AINDA FALTAM:
 -Colocar API no CNPJ que puxe o nome da empresa... = check
--melhorar esse codigozim = falta
+-melhorar esse codigozim = Check (nem tanto)
 -verificar os campos = Check
-
-//consertar o bug do nome fantasia
+-consertar o bug do nome fantasia = check
 */
 
 
@@ -40,6 +39,14 @@ let vlrDesconto;
 let vlrComissao;
 let comissaoAndSalary
 
+
+//modal
+const modal = document.querySelector('.modal')
+const btnClose = document.querySelector('.close-modal')
+function removeModal() {
+    modal.classList.add('hidden')
+}
+btnClose.addEventListener('click', removeModal)
 
 /* DADOS DO CLIENTE E EMPRESA */
 
@@ -161,7 +168,7 @@ async function elementoFilho(nameElement, textoElemento) {
     pElement.textContent = textoElemento
     const elementoName = nameElement.parentNode.insertBefore(pElement, nameElement.nextSibling)
     enviarBtn.disabled = true,
-    setTimeout(() => elementoName.remove(), 5000)
+    setTimeout(() => elementoName.remove(), 4985)
     setTimeout(() => enviarBtn.disabled = false, 5000)
 }
 function selectElement(x) {
@@ -241,6 +248,7 @@ function holerite(e){
 
 function cleanBtn() {
     location.reload()
+    removeModal()
 }
 
 enviarBtn.addEventListener('click', holerite)
@@ -250,9 +258,10 @@ function myPhoto() {
 
 let canvas = document.getElementById("myCanvas");
     let context = canvas.getContext("2d");
+    let imagemOrigem = "./img/xxa.png"
     // Carrega a imagem
     let img = new Image();
-    img.src = "./img/xxa.png";
+    img.src = imagemOrigem;
 
     // Aguarda o carregamento da imagem
     img.onload = function() {
@@ -413,7 +422,22 @@ let canvas = document.getElementById("myCanvas");
         holeritePosition()
     }
     inserirDados()
+    
     };
+    function tt2() {
+        let imgURL = canvas.toDataURL()
+        var imagemHol = new Image()
+        imagemHol.src = imgURL
+        const imgPrint = document.querySelector('.imgPrint')
+        imgPrint.appendChild(imagemHol)
+        const btnGerar = document.querySelector('.btnGerar')
+        btnGerar.addEventListener('click', function(e) {
+            e.preventDefault()
+            print()
+    })
+    }
+    setTimeout(() => tt2(), 4000)
 }
+
 
 //amo a jiyeon ^-^

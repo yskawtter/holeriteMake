@@ -5,10 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Holerite Maker</title>
+    <title>HOLERITE MAKER</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,600;1,600&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="textoPrincipal">
@@ -43,8 +41,12 @@
 
     <label for="">Insira uma descrição basica:</label>
     <textarea name="comentario" id="comentario" rows="10" placeholder="CPF, Felicidades...(Opcional)"></textarea>
-    <button class="btn enviar">enviar</button>
-    <button class="btn limpar">limpar</button>
+    <div>
+        <button class="btn enviar">visualizar</button>
+        <button class="btn btnGerar">Gerar PDF</button>
+        <button class="btn limpar">limpar</button>
+    </div
+    >
 </form>
 
     <div class="info">
@@ -65,9 +67,25 @@
     </div>
 </div>
 
-    <div class="imgHol">
-        <canvas id="myCanvas" width="931" height="594"></canvas>
+<div class="imgHol">
+    <canvas id="myCanvas" width="931" height="594"></canvas>
     </div>
-    <script type="module" src="script.js"></script>
+    <div class="imgPrint">
+        
+    </div>
+    <div class="modal ">
+        <button class="close-modal">&times;</button>
+        <h3>BEM VINDO AO SITE HOLERITE MAKE</h3>
+        <h4>Regrinhas básicas antes de usar :3</h4>
+        <ul>
+            <li>Caso você tenha acesso ao CNPJ, não precisa colocar o nome da empresa...</li>
+            <li>Você tem 50 consultas ao dia</li>
+            <li>Após enviar os dados espere 5s para ter seu holerite</li>
+            <li>Só gere seu PDF após visualizar o holerite</li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>
